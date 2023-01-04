@@ -39,8 +39,8 @@
             this.CKB_DiceKeeper3 = new System.Windows.Forms.CheckBox();
             this.CKB_DiceKeeper4 = new System.Windows.Forms.CheckBox();
             this.CKB_DiceKeeper5 = new System.Windows.Forms.CheckBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.test = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DGV_ScoreBoard = new System.Windows.Forms.DataGridView();
+            this.datagrid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.P1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.P2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.PCB_Dice1)).BeginInit();
@@ -48,7 +48,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PCB_Dice3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PCB_Dice4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PCB_Dice5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_ScoreBoard)).BeginInit();
             this.SuspendLayout();
             // 
             // BTN_Roll
@@ -166,34 +166,42 @@
             this.CKB_DiceKeeper5.UseVisualStyleBackColor = true;
             this.CKB_DiceKeeper5.CheckedChanged += new System.EventHandler(this.CKB_DiceKeeper5_CheckedChanged);
             // 
-            // dataGridView1
+            // DGV_ScoreBoard
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.test,
+            this.DGV_ScoreBoard.AllowUserToDeleteRows = false;
+            this.DGV_ScoreBoard.BackgroundColor = System.Drawing.Color.DarkGreen;
+            this.DGV_ScoreBoard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGV_ScoreBoard.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.datagrid,
             this.P1,
             this.P2});
-            this.dataGridView1.Location = new System.Drawing.Point(629, 96);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(244, 150);
-            this.dataGridView1.TabIndex = 17;
+            this.DGV_ScoreBoard.Location = new System.Drawing.Point(644, 12);
+            this.DGV_ScoreBoard.MultiSelect = false;
+            this.DGV_ScoreBoard.Name = "DGV_ScoreBoard";
+            this.DGV_ScoreBoard.ReadOnly = true;
+            this.DGV_ScoreBoard.RowTemplate.Height = 25;
+            this.DGV_ScoreBoard.Size = new System.Drawing.Size(248, 458);
+            this.DGV_ScoreBoard.TabIndex = 17;
             // 
-            // test
+            // datagrid
             // 
-            this.test.HeaderText = "";
-            this.test.Name = "test";
+            this.datagrid.HeaderText = "";
+            this.datagrid.Name = "datagrid";
+            this.datagrid.ReadOnly = true;
+            this.datagrid.Width = 95;
             // 
             // P1
             // 
             this.P1.HeaderText = "Player1";
             this.P1.Name = "P1";
+            this.P1.ReadOnly = true;
             this.P1.Width = 50;
             // 
             // P2
             // 
             this.P2.HeaderText = "Player2";
             this.P2.Name = "P2";
+            this.P2.ReadOnly = true;
             this.P2.Width = 50;
             // 
             // Yahtzee
@@ -202,7 +210,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGreen;
             this.ClientSize = new System.Drawing.Size(904, 530);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DGV_ScoreBoard);
             this.Controls.Add(this.CKB_DiceKeeper5);
             this.Controls.Add(this.CKB_DiceKeeper4);
             this.Controls.Add(this.CKB_DiceKeeper3);
@@ -222,7 +230,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PCB_Dice3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PCB_Dice4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PCB_Dice5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGV_ScoreBoard)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -241,8 +249,8 @@
         private CheckBox CKB_DiceKeeper3;
         private CheckBox CKB_DiceKeeper4;
         private CheckBox CKB_DiceKeeper5;
-        private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn test;
+        private DataGridView DGV_ScoreBoard;
+        private DataGridViewTextBoxColumn datagrid;
         private DataGridViewTextBoxColumn P1;
         private DataGridViewTextBoxColumn P2;
     }

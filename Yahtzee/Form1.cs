@@ -10,6 +10,23 @@ namespace Yahtzee
             CKB_DiceKeeper3.Visible = false;
             CKB_DiceKeeper4.Visible = false;
             CKB_DiceKeeper5.Visible = false;
+
+            DGV_ScoreBoard.Rows.Add("Ones");
+            DGV_ScoreBoard.Rows.Add("Twos");
+            DGV_ScoreBoard.Rows.Add("Threes");
+            DGV_ScoreBoard.Rows.Add("Fours");
+            DGV_ScoreBoard.Rows.Add("Fives");
+            DGV_ScoreBoard.Rows.Add("Sixes");
+            DGV_ScoreBoard.Rows.Add("Sum");
+            DGV_ScoreBoard.Rows.Add("Bonus");
+            DGV_ScoreBoard.Rows.Add("Three of a kind");
+            DGV_ScoreBoard.Rows.Add("Four of a kind");
+            DGV_ScoreBoard.Rows.Add("Full House");
+            DGV_ScoreBoard.Rows.Add("Small straight");
+            DGV_ScoreBoard.Rows.Add("Large straight");
+            DGV_ScoreBoard.Rows.Add("Chance");
+            DGV_ScoreBoard.Rows.Add("YAHTZEE");
+            DGV_ScoreBoard.Rows.Add("TOTAL SCORE");
         }
 
         private static Random RNG = new Random();
@@ -23,8 +40,6 @@ namespace Yahtzee
 
         private void Yahtzee_Load(object sender, EventArgs e)
         {
-            //PCB_DiceX
-            //BTN_DiceKeeperX
         }
 
         // Dice Roller
