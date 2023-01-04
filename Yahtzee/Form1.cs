@@ -10,23 +10,6 @@ namespace Yahtzee
             CKB_DiceKeeper3.Visible = false;
             CKB_DiceKeeper4.Visible = false;
             CKB_DiceKeeper5.Visible = false;
-
-            DGV_ScoreBoard.Rows.Add("Ones");
-            DGV_ScoreBoard.Rows.Add("Twos");
-            DGV_ScoreBoard.Rows.Add("Threes");
-            DGV_ScoreBoard.Rows.Add("Fours");
-            DGV_ScoreBoard.Rows.Add("Fives");
-            DGV_ScoreBoard.Rows.Add("Sixes");
-            DGV_ScoreBoard.Rows.Add("Sum");
-            DGV_ScoreBoard.Rows.Add("Bonus");
-            DGV_ScoreBoard.Rows.Add("Three of a kind");
-            DGV_ScoreBoard.Rows.Add("Four of a kind");
-            DGV_ScoreBoard.Rows.Add("Full House");
-            DGV_ScoreBoard.Rows.Add("Small straight");
-            DGV_ScoreBoard.Rows.Add("Large straight");
-            DGV_ScoreBoard.Rows.Add("Chance");
-            DGV_ScoreBoard.Rows.Add("YAHTZEE");
-            DGV_ScoreBoard.Rows.Add("TOTAL SCORE");
         }
 
         private static Random RNG = new Random();
@@ -51,14 +34,65 @@ namespace Yahtzee
             int sumegyesek = 0;
             foreach (int i in StoreTMB)
             {
-                if (StoreTMB[i] == 1) sumegyesek += i;
+                if (i == 1) sumegyesek += i;
             }
+            sumegyesek *= 1;
             //kettesek
             int sumkettesek = 0;
             foreach (int i in StoreTMB)
             {
-                if (StoreTMB[i] == 2) sumkettesek += i;
+                if (i == 2) sumkettesek += i;
             }
+            sumegyesek *= 2;
+            //hármasok
+            int sumharmasok = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (i == 3) sumharmasok += i;
+            }
+            sumharmasok *= 3;
+            //négyesek
+            int sumnegyesek = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (i == 4) sumnegyesek += i;
+            }
+            sumnegyesek *= 4;
+            //ötösök
+            int sumotosok = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (i == 5) sumotosok += i;
+            }
+            sumotosok *= 5;
+            //hatosok
+            int sumhatosok = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (i == 6) sumhatosok += i;
+            }
+            sumhatosok *= 6;
+            //hetesek
+            int sumhetesek = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (i == 7) sumhetesek += i;
+            }
+            sumhetesek *= 7;
+            //nyolcasok
+            int sumnyolcasok = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (i == 8) sumnyolcasok += i;
+            }
+            sumnyolcasok *= 8;
+            //kilencesek
+            int sumkilencesek = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (i == 9) sumkilencesek += i;
+            }
+            sumkilencesek *= 9;
         }
 
         private void BTN_Roll_Click(object sender, EventArgs e)
@@ -260,6 +294,8 @@ namespace Yahtzee
 
             #endregion DICE
 
+            kategoria();
+
             RollsRemaining--;
         }
 
@@ -271,6 +307,7 @@ namespace Yahtzee
                 DiceKeep1 = false;
         }
 
+        //Dice 2 Keeper
         private void CKB_DiceKeeper2_CheckedChanged(object sender, EventArgs e)
         {
             DiceKeep2 = true;
@@ -278,6 +315,7 @@ namespace Yahtzee
                 DiceKeep2 = false;
         }
 
+        //Dice 3 Keeper
         private void CKB_DiceKeeper3_CheckedChanged(object sender, EventArgs e)
         {
             DiceKeep3 = true;
@@ -285,6 +323,7 @@ namespace Yahtzee
                 DiceKeep3 = false;
         }
 
+        //Dice 4 Keeper
         private void CKB_DiceKeeper4_CheckedChanged(object sender, EventArgs e)
         {
             DiceKeep4 = true;
@@ -292,6 +331,7 @@ namespace Yahtzee
                 DiceKeep4 = false;
         }
 
+        //Dice 5 Keeper
         private void CKB_DiceKeeper5_CheckedChanged(object sender, EventArgs e)
         {
             DiceKeep5 = true;
