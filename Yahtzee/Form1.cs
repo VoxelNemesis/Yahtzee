@@ -4,6 +4,7 @@ namespace Yahtzee
     {
         public Yahtzee()
         {
+            // a pontszámolás vizsgálatát static boolokkal megcsinálni (ha vizsgálat után lehetséges, a button checkolható
             InitializeComponent();
             CKB_DiceKeeper1.Visible = false;
             CKB_DiceKeeper2.Visible = false;
@@ -59,6 +60,165 @@ namespace Yahtzee
             {
                 if (StoreTMB[i] == 2) sumkettesek += i;
             }
+            //hármasok
+            int sumharmasok = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (StoreTMB[i] == 3) sumharmasok += i;
+            }
+            // négyesek
+            int sumnegyesek = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (StoreTMB[i] == 3) sumnegyesek += i;
+            }
+            // ötösök
+            int sumotosok = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (StoreTMB[i] == 5) sumotosok += i;
+            }
+            // hatosok
+            int sumhatosok = 0;
+            foreach (int i in StoreTMB)
+            {
+                if (StoreTMB[i] == 6) sumotosok += i;
+            }
+            // Three of a kind
+            int count = 1;
+            int lepteto = 0;
+            while (count != 3 && lepteto != StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] == StoreTMB[j+1])
+                        {
+                            count++;
+                        }
+                    }
+                }
+                lepteto++;
+            }
+            int toksum = 0;
+            foreach (var i in StoreTMB)
+            {
+                toksum += i;
+            }
+            // four of a kind
+            int count4 = 1;
+            int lepteto4 = 0;
+            while (count != 4 && lepteto4 != StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] == StoreTMB[j + 1])
+                        {
+                            count4++;
+                        }
+                    }
+                }
+                lepteto4++;
+            }
+            int foksum = 0;
+            foreach (var i in StoreTMB)
+            {
+                foksum += i;
+            }
+            // full house
+            int countfull = 1;
+            int countfull2 = 1;
+            int leptetofull = 0;
+            int leptetofull2 = 0;
+            while (countfull != 3 && leptetofull != StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] == StoreTMB[j + 1])
+                        {
+                            countfull++;
+                        }
+                    }
+                }
+                leptetofull++;
+            }
+            
+            while (countfull2 != 2 && leptetofull2 != StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length -1 ; j++)
+                    {
+                        if (StoreTMB[i] == StoreTMB[j + 1])
+                        {
+                            countfull2++;
+                        }
+                    }
+                }
+            }
+            // ez esetén ide majd le kell írni, hogy a pont amit kapunk 25
+            // small straight
+            // 1 3 6 5 6
+            Array.Sort(StoreTMB, (x, y) => y.CompareTo(x));
+            int leptetostraightsmall =2;
+            while (StoreTMB[leptetostraightsmall] == StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2])
+                        {
+                            //a bool true
+                        }
+                    }
+
+                }
+                leptetostraightsmall++;
+            }
+            // Large straight
+            int leptetostraightlarge = 2;
+            while (StoreTMB[leptetostraightlarge] == StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2] && StoreTMB[i] + 3 == StoreTMB[j + 3] && StoreTMB[i] + 4 == StoreTMB[j + 4])
+                        {
+                            //a bool true
+                        }
+                    }
+
+                }
+                leptetostraightlarge++;
+            }
+            // chance 
+            //mindig true, pontok:
+            int chancepont = 0;
+            for (int i = 0; i < StoreTMB.Length; i++)
+            {
+                chancepont += StoreTMB[i];
+            }
+            //yahtzee
+             int countyahtzee = 1;
+            for (int i = 1; i < StoreTMB.Length; i++)
+            {
+                if (StoreTMB[i] == StoreTMB[i - 1])
+                {
+                    countyahtzee++;
+                }
+            }
+            if (countyahtzee == 5)
+            {
+                //a bool true
+            }
+            //pont = 50
         }
 
         private void BTN_Roll_Click(object sender, EventArgs e)
