@@ -1,10 +1,10 @@
-namespace Yahtzee
+Ôªønamespace Yahtzee
 {
     public partial class Yahtzee : Form
     {
         public Yahtzee()
         {
-            // a pontsz·mol·s vizsg·lat·t static boolokkal megcsin·lni (ha vizsg·lat ut·n lehetsÈges, a button checkolhatÛ
+            // a pontsz√°mol√°s vizsg√°lat√°t static boolokkal megcsin√°lni (ha vizsg√°lat ut√°n lehets√©ges, a button checkolhat√≥
             InitializeComponent();
             CKB_DiceKeeper1.Visible = false;
             CKB_DiceKeeper2.Visible = false;
@@ -38,6 +38,21 @@ namespace Yahtzee
         private static bool DiceKeep3 = false;
         private static bool DiceKeep4 = false;
         private static bool DiceKeep5 = false;
+        
+        private static bool Ones = false;
+        private static bool Twos = false;
+        private static bool Threes = false;
+        private static bool Fours = false;
+        private static bool Fives = false;
+        private static bool Sixes = false;
+        private static bool Bonus = false;
+        private static bool ThreeOfAKind = false;
+        private static bool FourOfAKind = false;
+        private static bool FullHouse = false;
+        private static bool SmallStraight = false;
+        private static bool LargeStraight = false;
+        private static bool Chance = false;
+        private static bool YahtzeePont = false;
 
         private void Yahtzee_Load(object sender, EventArgs e)
         {
@@ -60,19 +75,19 @@ namespace Yahtzee
             {
                 if (StoreTMB[i] == 2) sumkettesek += i;
             }
-            //h·rmasok
+            //h√°rmasok
             int sumharmasok = 0;
             foreach (int i in StoreTMB)
             {
                 if (StoreTMB[i] == 3) sumharmasok += i;
             }
-            // nÈgyesek
+            // n√©gyesek
             int sumnegyesek = 0;
             foreach (int i in StoreTMB)
             {
                 if (StoreTMB[i] == 3) sumnegyesek += i;
             }
-            // ˆtˆsˆk
+            // √∂t√∂s√∂k
             int sumotosok = 0;
             foreach (int i in StoreTMB)
             {
@@ -161,7 +176,7 @@ namespace Yahtzee
                     }
                 }
             }
-            // ez esetÈn ide majd le kell Ìrni, hogy a pont amit kapunk 25
+            // ez eset√©n ide majd le kell √≠rni, hogy a pont amit kapunk 25
             // small straight
             // 1 3 6 5 6
             Array.Sort(StoreTMB, (x, y) => y.CompareTo(x));
@@ -419,6 +434,154 @@ namespace Yahtzee
             }
 
             #endregion DICE
+            // Ones ellen≈ërz√©s
+            Array.Sort(StoreTMB, (x, y) => y.CompareTo(x));
+            foreach (int i in StoreTMB)
+            {
+                if (i == 1) Ones = true;
+            }
+
+            //Kettes Ellen≈ërz√©s
+
+            foreach (int i in StoreTMB)
+            {
+                if (i == 2) Twos = true;
+            }
+            //h√°rmasok
+       
+            foreach (int i in StoreTMB)
+            {
+                if (i == 3) Threes = true;
+            }
+            // n√©gyesek
+           
+            foreach (int i in StoreTMB)
+            {
+                if (i == 4) Fours = true;
+            }
+            // √∂t√∂s√∂k
+          
+            foreach (int i in StoreTMB)
+            {
+                if (i == 5) Fives = true;
+            }
+            // hatosok
+           
+            foreach (int i in StoreTMB)
+            {
+                if (i == 6) Sixes = true;
+            }
+            //Three of a kind
+            int count = 1;          
+          
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] == StoreTMB[j + 1])
+                        {
+                            count++;
+                        }
+                    }
+                if (count > 3)
+                {
+                    ThreeOfAKind = true;
+                }
+                else count = 1;
+                }
+
+            //Four of a kind
+            int countFour = 1;
+            for (int i = 0; i < StoreTMB.Length; i++)
+            {
+                for (int j = 0; j < StoreTMB.Length - 1; j++)
+                {
+                    if (StoreTMB[i] == StoreTMB[j + 1])
+                    {
+                        count++;
+                    }
+                }
+                if (count > 4)
+                {
+                    ThreeOfAKind = true;
+                }
+                else count = 1;
+            }
+            // Full house
+            int countPair = 1;
+            bool pair = false;
+            for (int i = 0; i < StoreTMB.Length; i++)
+            {
+                for (int j = 0; j < StoreTMB.Length - 1; j++)
+                {
+                    if (StoreTMB[i] == StoreTMB[j + 1])
+                    {
+                        count++;
+                    }
+                }
+                if (count > 2)
+                {
+                    pair = true;
+                }
+                else count = 1;
+            }
+            if (pair == true && ThreeOfAKind == true)
+            {
+                FullHouse = true;
+            }
+            //small straight
+
+            int leptetostraightsmall = 2;
+            while (StoreTMB[leptetostraightsmall] != StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2])
+                        {
+                            SmallStraight = true;
+                        }
+                    }
+
+                }
+                leptetostraightsmall++;
+            }
+
+            // Large Straight
+            int leptetostraightlarge = 2;
+            while (StoreTMB[leptetostraightlarge] == StoreTMB.Length)
+            {
+                for (int i = 0; i < StoreTMB.Length; i++)
+                {
+                    for (int j = 0; j < StoreTMB.Length - 1; j++)
+                    {
+                        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2] && StoreTMB[i] + 3 == StoreTMB[j + 3] && StoreTMB[i] + 4 == StoreTMB[j + 4])
+                        {
+                            LargeStraight = true;
+                        }
+                    }
+
+                }
+                leptetostraightlarge++;
+            }
+            // chance 
+            //mindig true, pontok:
+            Chance = true;
+
+            int countyahtzee = 1;
+            for (int i = 1; i < StoreTMB.Length; i++)
+            {
+                if (StoreTMB[i] == StoreTMB[i - 1])
+                {
+                    countyahtzee++;
+                }
+            }
+            if (countyahtzee == 5)
+            {
+                YahtzeePont = true;
+            }
+            //pont = 50
 
             RollsRemaining--;
         }
