@@ -23,6 +23,14 @@ namespace Yahtzee
         private static bool DiceKeep4 = false;
         private static bool DiceKeep5 = false;
 
+        private static int Kept1 = 0;
+        private static int Kept2 = 0;
+        private static int Kept3 = 0;
+        private static int Kept4 = 0;
+        private static int Kept5 = 0;
+        private static int Kept6 = 0;
+
+
         private static bool Ones = false;
         private static bool Twos = false;
         private static bool Threes = false;
@@ -46,45 +54,82 @@ namespace Yahtzee
 
         // Dice Roller
         private static int RollsRemaining = 2;
-
+        private static int SumForElse(int a)
+        {
+            a = 0; 
+            foreach (var i in StoreTMB)
+            {
+                a += i;
+            }
+            return a;
+        }
+        private static int SumForNum(int a, int keresett)
+        {
+            for (int i = 0; i < StoreTMB.Length; i++)
+            {
+                if (StoreTMB[i] == keresett)
+                {
+                    a += StoreTMB[i];
+                }
+            }
+            return a;
+        }
         private static void Checker()
         {
             Array.Sort(StoreTMB, (x, y) => y.CompareTo(x));
+            //egyesek
+
             foreach (int i in StoreTMB)
             {
                 if (i == 1) Ones = true;
             }
-
+            int keresett1 = 1;
+            int egyesSum =0;
+            SumForNum(egyesSum, keresett1);
             //Kettes Ellenõrzés
 
             foreach (int i in StoreTMB)
             {
                 if (i == 2) Twos = true;
             }
+            int kettesSum = 0;
+            int keresett2 = 2;
+            SumForNum(kettesSum, keresett2);
             //hármasok
 
             foreach (int i in StoreTMB)
             {
                 if (i == 3) Threes = true;
             }
+            int harmasSum = 0;
+            int keresett3 = 3;
+            SumForNum(harmasSum, keresett3);
             // négyesek
 
             foreach (int i in StoreTMB)
             {
                 if (i == 4) Fours = true;
             }
+            int negyesSum = 0;
+            int keresett4 = 4;
+            SumForNum(negyesSum, keresett4);
             // ötösök
 
             foreach (int i in StoreTMB)
             {
                 if (i == 5) Fives = true;
             }
+            int otosSum = 0;
+            int keresett5 = 5;
+            SumForNum(otosSum, keresett5);
             // hatosok
 
             foreach (int i in StoreTMB)
             {
                 if (i == 6) Sixes = true;
             }
+            int hatosSum = 0;
+            int keresett6 = 6;
             //Three of a kind
             int count = 1;
 
@@ -103,7 +148,8 @@ namespace Yahtzee
                 }
                 else count = 1;
             }
-
+            int TOKsum = 0;
+            SumForElse(TOKsum);
             //Four of a kind
             int countFour = 1;
             for (int i = 0; i < StoreTMB.Length; i++)
@@ -121,6 +167,8 @@ namespace Yahtzee
                 }
                 else count = 1;
             }
+            int FOKsum = 0;
+            SumForElse(FOKsum);
             // Full house
             int countPair = 1;
             bool pair = false;
@@ -145,9 +193,7 @@ namespace Yahtzee
             }
             //small straight
 
-            int leptetostraightsmall = 2;
-            while (StoreTMB[leptetostraightsmall] != StoreTMB.Length)
-            {
+           
                 for (int i = 0; i < StoreTMB.Length; i++)
                 {
                     for (int j = 0; j < StoreTMB.Length - 1; j++)
@@ -158,13 +204,10 @@ namespace Yahtzee
                         }
                     }
                 }
-                leptetostraightsmall++;
-            }
-
-            // Large Straight
-            int leptetostraightlarge = 2;
-            while (StoreTMB[leptetostraightlarge] == StoreTMB.Length)
-            {
+               
+            
+                // Large Straight
+           
                 for (int i = 0; i < StoreTMB.Length; i++)
                 {
                     for (int j = 0; j < StoreTMB.Length - 1; j++)
@@ -175,8 +218,10 @@ namespace Yahtzee
                         }
                     }
                 }
-                leptetostraightlarge++;
-            }
+
+
+               
+            
             // chance
             //mindig true, pontok:
             Chance = true;
@@ -204,7 +249,12 @@ namespace Yahtzee
                 BTN_Roll.Enabled = false;
                 BTN_Roll.Text = "Out Of Rolls";
             }
-
+            Kept1 = StoreTMB[0];
+            Kept2 = StoreTMB[1];
+            Kept3 = StoreTMB[2];
+            Kept4 = StoreTMB[3];
+            Kept5 = StoreTMB[4];
+            Kept6 = StoreTMB[5];
             for (int i = 0; i < StoreTMB.Length; i++)
             {
                 StoreTMB[i] = RNG.Next(1, 7);
@@ -395,7 +445,29 @@ namespace Yahtzee
 
             #endregion DICE
 
+            if (CKB_DiceKeeper1.Checked == true)
+            {
+                StoreTMB[0] = Kept1;
+            }
+            if (CKB_DiceKeeper2.Checked == true)
+            {
+                StoreTMB[1] = Kept2;
+            }
+            if (CKB_DiceKeeper3.Checked == true)
+            {
+                StoreTMB[2] = Kept3;
+            }
+            if (CKB_DiceKeeper4.Checked == true)
+            {
+                StoreTMB[3] = Kept4;
+            }
+            if (CKB_DiceKeeper5.Checked == true)
+            {
+                StoreTMB[4] = Kept5;
+            }
+            
             Checker();
+
             RollsRemaining--;
         }
 
@@ -405,6 +477,7 @@ namespace Yahtzee
             DiceKeep1 = true;
             if (CKB_DiceKeeper1.Checked == false)
                 DiceKeep1 = false;
+
         }
 
         //Dice 2 Keeper
@@ -413,6 +486,7 @@ namespace Yahtzee
             DiceKeep2 = true;
             if (CKB_DiceKeeper2.Checked == false)
                 DiceKeep2 = false;
+           
         }
 
         //Dice 3 Keeper
