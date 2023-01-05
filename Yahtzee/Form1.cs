@@ -28,7 +28,13 @@ namespace Yahtzee
         private static int Kept3 = 0;
         private static int Kept4 = 0;
         private static int Kept5 = 0;
-        private static int Kept6 = 0;
+
+        private static bool OnesButtonPressed = false;
+        private static bool TwosButtonPressed = false;
+        private static bool ThreesButtonPressed = false;
+        private static bool FoursButtonPressed = false;
+        private static bool FivesButtonPressed = false;
+        private static bool SixesButtonPressed = false;
 
         private static bool Ones = false;
         private static bool Twos = false;
@@ -64,8 +70,9 @@ namespace Yahtzee
             return a;
         }
 
-        private static int SumForNum(int a, int keresett)
+        private static int SumForNum(int keresett)
         {
+            int a = 0;
             for (int i = 0; i < StoreTMB.Length; i++)
             {
                 if (StoreTMB[i] == keresett)
@@ -78,60 +85,52 @@ namespace Yahtzee
 
         private void Checker()
         {
-            Array.Sort(StoreTMB, (x, y) => x.CompareTo(y));
+            //Array.Sort(StoreTMB, (x, y) => x.CompareTo(y));
             //egyesek
 
             foreach (int i in StoreTMB)
             {
                 if (i == 1) Ones = true;
             }
-            int keresett1 = 1;
-            int egyesSum = 0;
-            RTB_Ones.Text = SumForNum(egyesSum, keresett1).ToString();
+            if (OnesButtonPressed == false && SumForNum(1) != 0) RTB_Ones.Text = SumForNum(1).ToString();
             //Kettes Ellenõrzés
 
             foreach (int i in StoreTMB)
             {
                 if (i == 2) Twos = true;
             }
-            int kettesSum = 0;
-            int keresett2 = 2;
-            SumForNum(kettesSum, keresett2);
+            if (TwosButtonPressed == false && SumForNum(2) != 0) RTB_Twos.Text = SumForNum(2).ToString();
             //hármasok
 
             foreach (int i in StoreTMB)
             {
                 if (i == 3) Threes = true;
             }
-            int harmasSum = 0;
-            int keresett3 = 3;
-            SumForNum(harmasSum, keresett3);
+            // SumForNum(harmasSum, keresett3);
+            if (ThreesButtonPressed == false && SumForNum(3) != 0) RTB_Threes.Text = SumForNum(3).ToString();
             // négyesek
 
             foreach (int i in StoreTMB)
             {
                 if (i == 4) Fours = true;
             }
-            int negyesSum = 0;
-            int keresett4 = 4;
-            SumForNum(negyesSum, keresett4);
+            //SumForNum(negyesSum, keresett4);
+            if (FoursButtonPressed == false && SumForNum(4) != 0) RTB_Fours.Text = SumForNum(4).ToString();
             // ötösök
 
             foreach (int i in StoreTMB)
             {
                 if (i == 5) Fives = true;
             }
-            int otosSum = 0;
-            int keresett5 = 5;
-            SumForNum(otosSum, keresett5);
+            //SumForNum(otosSum, keresett5);
+            if (FivesButtonPressed == false && SumForNum(5) != 0) RTB_Fives.Text = SumForNum(5).ToString();
             // hatosok
 
             foreach (int i in StoreTMB)
             {
                 if (i == 6) Sixes = true;
             }
-            int hatosSum = 0;
-            int keresett6 = 6;
+            if (SixesButtonPressed == false && SumForNum(6) != 0) RTB_Sixes.Text = SumForNum(6).ToString();
             //Three of a kind
             int count = 1;
 
@@ -236,6 +235,15 @@ namespace Yahtzee
                 YahtzeePont = true;
             }
             //pont = 50
+            if (OnesButtonPressed == true && TwosButtonPressed == true && ThreesButtonPressed == true && FoursButtonPressed == true && FivesButtonPressed == true && SixesButtonPressed == true)
+            {
+                if (RTB_Ones.TextLength != 0 && RTB_Twos.TextLength != 0 && RTB_Threes.TextLength != 0 && RTB_Fours.TextLength != 0 && RTB_Fives.TextLength != 0 && RTB_Sixes.TextLength != 0)
+                {
+                    int adder = int.Parse(RTB_Ones.Text.ToString()) + int.Parse(RTB_Twos.Text.ToString()) + int.Parse(RTB_Threes.Text.ToString()) + int.Parse(RTB_Fours.Text.ToString()) + int.Parse(RTB_Fives.Text.ToString()) + int.Parse(RTB_Sixes.Text.ToString());
+                    RTB_Sum.Text = adder.ToString();
+                    if (adder >= 63) RTB_Bonus.Text = 35.ToString();
+                }
+            }
         }
 
         private void BTN_Roll_Click(object sender, EventArgs e)
@@ -527,12 +535,43 @@ namespace Yahtzee
         private void BTN_Ones_Click(object sender, EventArgs e)
         {
             RollReseter();
-            RTB_Ones.Enabled = false;
+            OnesButtonPressed = true;
+            BTN_Ones.Enabled = false;
         }
 
         private void BTN_Twos_Click(object sender, EventArgs e)
         {
             RollReseter();
+            TwosButtonPressed = true;
+            BTN_Twos.Enabled = false;
+        }
+
+        private void BTN_Threes_Click(object sender, EventArgs e)
+        {
+            RollReseter();
+            ThreesButtonPressed = true;
+            BTN_Threes.Enabled = false;
+        }
+
+        private void BTN_Fours_Click(object sender, EventArgs e)
+        {
+            RollReseter();
+            FoursButtonPressed = true;
+            BTN_Fours.Enabled = false;
+        }
+
+        private void BTN_Fives_Click(object sender, EventArgs e)
+        {
+            RollReseter();
+            FivesButtonPressed = true;
+            BTN_Fives.Enabled = false;
+        }
+
+        private void BTN_Sixes_Click(object sender, EventArgs e)
+        {
+            RollReseter();
+            SixesButtonPressed = true;
+            BTN_Sixes.Enabled = false;
         }
     }
 }

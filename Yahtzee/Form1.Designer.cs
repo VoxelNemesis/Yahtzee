@@ -354,6 +354,7 @@
             this.BTN_Fours.TabIndex = 56;
             this.BTN_Fours.Text = "Fours";
             this.BTN_Fours.UseVisualStyleBackColor = false;
+            this.BTN_Fours.Click += new System.EventHandler(this.BTN_Fours_Click);
             // 
             // BTN_Threes
             // 
@@ -364,6 +365,7 @@
             this.BTN_Threes.TabIndex = 55;
             this.BTN_Threes.Text = "Threes";
             this.BTN_Threes.UseVisualStyleBackColor = false;
+            this.BTN_Threes.Click += new System.EventHandler(this.BTN_Threes_Click);
             // 
             // BTN_Fives
             // 
@@ -374,6 +376,7 @@
             this.BTN_Fives.TabIndex = 57;
             this.BTN_Fives.Text = "Fives";
             this.BTN_Fives.UseVisualStyleBackColor = false;
+            this.BTN_Fives.Click += new System.EventHandler(this.BTN_Fives_Click);
             // 
             // BTN_Sixes
             // 
@@ -384,6 +387,7 @@
             this.BTN_Sixes.TabIndex = 58;
             this.BTN_Sixes.Text = "Sixes";
             this.BTN_Sixes.UseVisualStyleBackColor = false;
+            this.BTN_Sixes.Click += new System.EventHandler(this.BTN_Sixes_Click);
             // 
             // BTN_Chance
             // 
