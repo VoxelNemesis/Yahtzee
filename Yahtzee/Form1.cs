@@ -1,5 +1,7 @@
 using System.Diagnostics.Metrics;
 
+using static System.Formats.Asn1.AsnWriter;
+
 namespace Yahtzee
 {
     public partial class Yahtzee : Form
@@ -168,7 +170,7 @@ namespace Yahtzee
             if (ToakButtonPressed == false && hasthree == true) RTB_Toak.Text = score.ToString();
 
             //Four of a kind
-            score = 0;
+            int Foakscore = 0;
             bool hasFour = false;
             int[] CountsFoak = new int[6];
 
@@ -177,7 +179,7 @@ namespace Yahtzee
                 if (StoreTMB[i] != 0)
                 {
                     CountsFoak[StoreTMB[i] - 1]++;
-                    score += StoreTMB[i]; //add to all dice for score
+                    Foakscore += StoreTMB[i]; //add to all dice for score
                 }
             }
             //loop checks to see if any of the values in counts are 4 or greater. If so, sets hasFour to true
@@ -191,12 +193,12 @@ namespace Yahtzee
             }
             if (!hasFour)
             {
-                score = 0; //set total back to zero if array doesn't have 4
+                Foakscore = 0; //set total back to zero if array doesn't have 4
             }
-            if (FoakButtonPressed == false && hasFour == true) RTB_Foak.Text = score.ToString();
+            if (FoakButtonPressed == false && hasFour == true) RTB_Foak.Text = Foakscore.ToString();
             // Full house
 
-            score = 0;
+            int FHousescore = 0;
             bool hasTwo = false;
             bool hasThree = false;
             int[] counts = new int[6];
@@ -225,38 +227,44 @@ namespace Yahtzee
 
             if (hasTwo && hasThree)
             {
-                score = 25; //if hand has set of 2 and 3 score = 25
+                FHousescore = 25; //if hand has set of 2 and 3 score = 25
             }
-            ////small straight
+            if (FHouseButtonPressed == false && hasThree == true && hasTwo == true) RTB_FHouse.Text = FHousescore.ToString();
 
-            //for (int i = 0; i < StoreTMB.Length; i++)
-            //{
-            //    for (int j = 0; j < StoreTMB.Length - 1; j++)
-            //    {
-            //        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2])
-            //        {
-            //            SmallStraight = true;
-            //        }
-            //    }
-            //}
-
-            //// Large Straight
-
-            //for (int i = 0; i < StoreTMB.Length; i++)
-            //{
-            //    for (int j = 0; j < StoreTMB.Length - 1; j++)
-            //    {
-            //        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2] && StoreTMB[i] + 3 == StoreTMB[j + 3] && StoreTMB[i] + 4 == StoreTMB[j + 4])
-            //        {
-            //            LargeStraight = true;
-            //        }
-            //    }
-            //}
-
+            //Small Straight
+            int STRAscore = 0;
+            int run = 1;
+            for (int i = 0; i < StoreTMB.Length - 1; i++)
+            {
+                if (StoreTMB[i + 1] == StoreTMB[i] + 1)
+                {
+                    run++;
+                }
+            }
+            if (run >= 4)
+            {
+                STRAscore = 30;
+            }
+            if (SStraightButtonPressed == false && STRAscore != 0) RTB_SStraight.Text = STRAscore.ToString();
+            //Large straight
+            int LARscore = 0;
+            run = 1;
+            for (int i = 0; i < StoreTMB.Length - 1; i++)
+            {
+                if (StoreTMB[i + 1] == StoreTMB[i] + 1)
+                {
+                    run++;
+                }
+            }
+            if (run == 5)
+            {
+                LARscore = 40;
+            }
+            if (LStraightButtonPressed == false && LARscore != 0) RTB_LStraight.Text = LARscore.ToString();
             // YAHTZEE
             //counts is an array for each value on a die. A loop goes through the dice
             //and increases that index in the array.
-            score = 0;
+            int YAHTscore = 0;
             int[] CountsYahtzee = new int[6];
             for (int i = 0; i < StoreTMB.Length; i++)
             {
@@ -271,9 +279,31 @@ namespace Yahtzee
             {
                 if (i == 5)
                 {
-                    score = 50;
+                    YAHTscore = 50;
                     break;
                 }
+            }
+            if (yahtzeeButtonPressed == false && YAHTscore != 0) RTB_Yahtzee.Text = YAHTscore.ToString();
+            //Chance
+            int CHAscore = 0;
+            foreach (int i in StoreTMB)
+            {
+                CHAscore += i;
+            }
+            if (ChanceButtonPressed == false) RTB_Chance.Text = CHAscore.ToString();
+
+            //Sum for 1st section
+            if (RTB_Ones.TextLength != 0 && RTB_Twos.TextLength != 0 && RTB_Threes.TextLength != 0 && RTB_Fours.TextLength != 0 && RTB_Fives.TextLength != 0 && RTB_Sixes.TextLength != 0)
+            {
+                int adder = int.Parse(RTB_Ones.Text.ToString()) + int.Parse(RTB_Twos.Text.ToString()) + int.Parse(RTB_Threes.Text.ToString()) + int.Parse(RTB_Fours.Text.ToString()) + int.Parse(RTB_Fives.Text.ToString()) + int.Parse(RTB_Sixes.Text.ToString());
+                RTB_Sum.Text = adder.ToString();
+                if (adder >= 63) RTB_Bonus.Text = 35.ToString();
+            }
+            //Sum for 2nd section
+            if (RTB_Toak.TextLength != 0 && RTB_Foak.TextLength != 0 && RTB_FHouse.TextLength != 0 && RTB_SStraight.TextLength != 0 && RTB_LStraight.TextLength != 0 && RTB_Chance.TextLength != 0 && RTB_Yahtzee.TextLength != 0)
+            {
+                int adder = int.Parse(RTB_Toak.Text.ToString()) + int.Parse(RTB_Foak.Text.ToString()) + int.Parse(RTB_FHouse.Text.ToString()) + int.Parse(RTB_SStraight.Text.ToString()) + int.Parse(RTB_LStraight.Text.ToString()) + int.Parse(RTB_Chance.Text.ToString()) + int.Parse(RTB_Yahtzee.Text.ToString());
+                RTB_SSum.Text = adder.ToString();
             }
         }
 
@@ -646,18 +676,30 @@ namespace Yahtzee
 
         private void BTN_SStraight_Click(object sender, EventArgs e)
         {
+            RollReseter();
+            SStraightButtonPressed = true;
+            BTN_SStraight.Enabled = false;
         }
 
         private void BTN_LStraight_Click(object sender, EventArgs e)
         {
+            RollReseter();
+            LStraightButtonPressed = true;
+            BTN_LStraight.Enabled = false;
         }
 
         private void BTN_Yaht_Click(object sender, EventArgs e)
         {
+            RollReseter();
+            yahtzeeButtonPressed = true;
+            BTN_Yaht.Enabled = false;
         }
 
         private void BTN_Chance_Click(object sender, EventArgs e)
         {
+            RollReseter();
+            ChanceButtonPressed = true;
+            BTN_Chance.Enabled = false;
         }
     }
 }
