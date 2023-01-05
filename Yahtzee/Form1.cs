@@ -30,7 +30,6 @@ namespace Yahtzee
         private static int Kept5 = 0;
         private static int Kept6 = 0;
 
-
         private static bool Ones = false;
         private static bool Twos = false;
         private static bool Threes = false;
@@ -54,15 +53,17 @@ namespace Yahtzee
 
         // Dice Roller
         private static int RollsRemaining = 2;
+
         private static int SumForElse(int a)
         {
-            a = 0; 
+            a = 0;
             foreach (var i in StoreTMB)
             {
                 a += i;
             }
             return a;
         }
+
         private static int SumForNum(int a, int keresett)
         {
             for (int i = 0; i < StoreTMB.Length; i++)
@@ -74,9 +75,10 @@ namespace Yahtzee
             }
             return a;
         }
-        private static void Checker()
+
+        private void Checker()
         {
-            Array.Sort(StoreTMB, (x, y) => y.CompareTo(x));
+            Array.Sort(StoreTMB, (x, y) => x.CompareTo(y));
             //egyesek
 
             foreach (int i in StoreTMB)
@@ -84,8 +86,9 @@ namespace Yahtzee
                 if (i == 1) Ones = true;
             }
             int keresett1 = 1;
-            int egyesSum =0;
+            int egyesSum = 0;
             SumForNum(egyesSum, keresett1);
+            RTB_Ones.Text = egyesSum.ToString();
             //Kettes Ellenõrzés
 
             foreach (int i in StoreTMB)
@@ -191,37 +194,32 @@ namespace Yahtzee
             {
                 FullHouse = true;
             }
-            //small straight
+            ////small straight
 
-           
-                for (int i = 0; i < StoreTMB.Length; i++)
-                {
-                    for (int j = 0; j < StoreTMB.Length - 1; j++)
-                    {
-                        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2])
-                        {
-                            SmallStraight = true;
-                        }
-                    }
-                }
-               
-            
-                // Large Straight
-           
-                for (int i = 0; i < StoreTMB.Length; i++)
-                {
-                    for (int j = 0; j < StoreTMB.Length - 1; j++)
-                    {
-                        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2] && StoreTMB[i] + 3 == StoreTMB[j + 3] && StoreTMB[i] + 4 == StoreTMB[j + 4])
-                        {
-                            LargeStraight = true;
-                        }
-                    }
-                }
+            //for (int i = 0; i < StoreTMB.Length; i++)
+            //{
+            //    for (int j = 0; j < StoreTMB.Length - 1; j++)
+            //    {
+            //        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2])
+            //        {
+            //            SmallStraight = true;
+            //        }
+            //    }
+            //}
 
+            //// Large Straight
 
-               
-            
+            //for (int i = 0; i < StoreTMB.Length; i++)
+            //{
+            //    for (int j = 0; j < StoreTMB.Length - 1; j++)
+            //    {
+            //        if (StoreTMB[i] + 1 == StoreTMB[j + 1] && StoreTMB[i] + 2 == StoreTMB[j + 2] && StoreTMB[i] + 3 == StoreTMB[j + 3] && StoreTMB[i] + 4 == StoreTMB[j + 4])
+            //        {
+            //            LargeStraight = true;
+            //        }
+            //    }
+            //}
+
             // chance
             //mindig true, pontok:
             Chance = true;
@@ -254,7 +252,6 @@ namespace Yahtzee
             Kept3 = StoreTMB[2];
             Kept4 = StoreTMB[3];
             Kept5 = StoreTMB[4];
-            Kept6 = StoreTMB[5];
             for (int i = 0; i < StoreTMB.Length; i++)
             {
                 StoreTMB[i] = RNG.Next(1, 7);
@@ -465,7 +462,7 @@ namespace Yahtzee
             {
                 StoreTMB[4] = Kept5;
             }
-            
+
             Checker();
 
             RollsRemaining--;
@@ -477,7 +474,6 @@ namespace Yahtzee
             DiceKeep1 = true;
             if (CKB_DiceKeeper1.Checked == false)
                 DiceKeep1 = false;
-
         }
 
         //Dice 2 Keeper
@@ -486,7 +482,6 @@ namespace Yahtzee
             DiceKeep2 = true;
             if (CKB_DiceKeeper2.Checked == false)
                 DiceKeep2 = false;
-           
         }
 
         //Dice 3 Keeper
@@ -513,12 +508,32 @@ namespace Yahtzee
                 DiceKeep5 = false;
         }
 
+        private void RollReseter()
+        {
+            RollsRemaining = 2;
+            BTN_Roll.Text = "Roll";
+            BTN_Roll.Enabled = true;
+            PCB_Dice1.Image = null;
+            PCB_Dice2.Image = null;
+            PCB_Dice3.Image = null;
+            PCB_Dice4.Image = null;
+            PCB_Dice5.Image = null;
+            CKB_DiceKeeper1.Checked = false;
+            CKB_DiceKeeper2.Checked = false;
+            CKB_DiceKeeper3.Checked = false;
+            CKB_DiceKeeper4.Checked = false;
+            CKB_DiceKeeper5.Checked = false;
+        }
+
         private void BTN_Ones_Click(object sender, EventArgs e)
         {
+            RollReseter();
+            RTB_Ones.Enabled = false;
         }
 
         private void BTN_Twos_Click(object sender, EventArgs e)
         {
+            RollReseter();
         }
     }
 }
