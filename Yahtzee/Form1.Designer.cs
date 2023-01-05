@@ -332,6 +332,7 @@
             this.BTN_Ones.TabIndex = 53;
             this.BTN_Ones.Text = "Ones";
             this.BTN_Ones.UseVisualStyleBackColor = false;
+            this.BTN_Ones.Click += new System.EventHandler(this.BTN_Ones_Click);
             // 
             // BTN_Twos
             // 
@@ -342,6 +343,7 @@
             this.BTN_Twos.TabIndex = 54;
             this.BTN_Twos.Text = "Twos";
             this.BTN_Twos.UseVisualStyleBackColor = false;
+            this.BTN_Twos.Click += new System.EventHandler(this.BTN_Twos_Click);
             // 
             // BTN_Fours
             // 
