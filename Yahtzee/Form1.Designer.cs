@@ -398,6 +398,7 @@
             this.BTN_Chance.TabIndex = 66;
             this.BTN_Chance.Text = "Chance";
             this.BTN_Chance.UseVisualStyleBackColor = false;
+            this.BTN_Chance.Click += new System.EventHandler(this.BTN_Chance_Click);
             // 
             // BTN_LStraight
             // 
@@ -408,6 +409,7 @@
             this.BTN_LStraight.TabIndex = 65;
             this.BTN_LStraight.Text = "Lg. Straight";
             this.BTN_LStraight.UseVisualStyleBackColor = false;
+            this.BTN_LStraight.Click += new System.EventHandler(this.BTN_LStraight_Click);
             // 
             // BTN_SStraight
             // 
@@ -418,6 +420,7 @@
             this.BTN_SStraight.TabIndex = 64;
             this.BTN_SStraight.Text = "Sm. Straight";
             this.BTN_SStraight.UseVisualStyleBackColor = false;
+            this.BTN_SStraight.Click += new System.EventHandler(this.BTN_SStraight_Click);
             // 
             // BTN_FHouse
             // 
@@ -428,6 +431,7 @@
             this.BTN_FHouse.TabIndex = 63;
             this.BTN_FHouse.Text = "Full House";
             this.BTN_FHouse.UseVisualStyleBackColor = false;
+            this.BTN_FHouse.Click += new System.EventHandler(this.BTN_FHouse_Click);
             // 
             // BTN_Foak
             // 
@@ -438,6 +442,7 @@
             this.BTN_Foak.TabIndex = 62;
             this.BTN_Foak.Text = "Four of a kind";
             this.BTN_Foak.UseVisualStyleBackColor = false;
+            this.BTN_Foak.Click += new System.EventHandler(this.BTN_Foak_Click);
             // 
             // BTN_Toak
             // 
@@ -467,6 +472,7 @@
             this.BTN_Yaht.TabIndex = 68;
             this.BTN_Yaht.Text = "Yahtzee!";
             this.BTN_Yaht.UseVisualStyleBackColor = false;
+            this.BTN_Yaht.Click += new System.EventHandler(this.BTN_Yaht_Click);
             // 
             // label1
             // 
