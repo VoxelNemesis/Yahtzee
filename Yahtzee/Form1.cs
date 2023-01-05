@@ -87,8 +87,7 @@ namespace Yahtzee
             }
             int keresett1 = 1;
             int egyesSum = 0;
-            SumForNum(egyesSum, keresett1);
-            RTB_Ones.Text = egyesSum.ToString();
+            RTB_Ones.Text = SumForNum(egyesSum, keresett1).ToString();
             //Kettes Ellenõrzés
 
             foreach (int i in StoreTMB)
