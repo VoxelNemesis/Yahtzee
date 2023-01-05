@@ -332,6 +332,7 @@
             this.BTN_Ones.TabIndex = 53;
             this.BTN_Ones.Text = "Ones";
             this.BTN_Ones.UseVisualStyleBackColor = false;
+            this.BTN_Ones.Click += new System.EventHandler(this.BTN_Ones_Click);
             // 
             // BTN_Twos
             // 
@@ -342,6 +343,7 @@
             this.BTN_Twos.TabIndex = 54;
             this.BTN_Twos.Text = "Twos";
             this.BTN_Twos.UseVisualStyleBackColor = false;
+            this.BTN_Twos.Click += new System.EventHandler(this.BTN_Twos_Click);
             // 
             // BTN_Fours
             // 
@@ -352,6 +354,7 @@
             this.BTN_Fours.TabIndex = 56;
             this.BTN_Fours.Text = "Fours";
             this.BTN_Fours.UseVisualStyleBackColor = false;
+            this.BTN_Fours.Click += new System.EventHandler(this.BTN_Fours_Click);
             // 
             // BTN_Threes
             // 
@@ -362,6 +365,7 @@
             this.BTN_Threes.TabIndex = 55;
             this.BTN_Threes.Text = "Threes";
             this.BTN_Threes.UseVisualStyleBackColor = false;
+            this.BTN_Threes.Click += new System.EventHandler(this.BTN_Threes_Click);
             // 
             // BTN_Fives
             // 
@@ -372,6 +376,7 @@
             this.BTN_Fives.TabIndex = 57;
             this.BTN_Fives.Text = "Fives";
             this.BTN_Fives.UseVisualStyleBackColor = false;
+            this.BTN_Fives.Click += new System.EventHandler(this.BTN_Fives_Click);
             // 
             // BTN_Sixes
             // 
@@ -382,6 +387,7 @@
             this.BTN_Sixes.TabIndex = 58;
             this.BTN_Sixes.Text = "Sixes";
             this.BTN_Sixes.UseVisualStyleBackColor = false;
+            this.BTN_Sixes.Click += new System.EventHandler(this.BTN_Sixes_Click);
             // 
             // BTN_Chance
             // 
@@ -392,6 +398,7 @@
             this.BTN_Chance.TabIndex = 66;
             this.BTN_Chance.Text = "Chance";
             this.BTN_Chance.UseVisualStyleBackColor = false;
+            this.BTN_Chance.Click += new System.EventHandler(this.BTN_Chance_Click);
             // 
             // BTN_LStraight
             // 
@@ -402,6 +409,7 @@
             this.BTN_LStraight.TabIndex = 65;
             this.BTN_LStraight.Text = "Lg. Straight";
             this.BTN_LStraight.UseVisualStyleBackColor = false;
+            this.BTN_LStraight.Click += new System.EventHandler(this.BTN_LStraight_Click);
             // 
             // BTN_SStraight
             // 
@@ -412,6 +420,7 @@
             this.BTN_SStraight.TabIndex = 64;
             this.BTN_SStraight.Text = "Sm. Straight";
             this.BTN_SStraight.UseVisualStyleBackColor = false;
+            this.BTN_SStraight.Click += new System.EventHandler(this.BTN_SStraight_Click);
             // 
             // BTN_FHouse
             // 
@@ -422,6 +431,7 @@
             this.BTN_FHouse.TabIndex = 63;
             this.BTN_FHouse.Text = "Full House";
             this.BTN_FHouse.UseVisualStyleBackColor = false;
+            this.BTN_FHouse.Click += new System.EventHandler(this.BTN_FHouse_Click);
             // 
             // BTN_Foak
             // 
@@ -432,6 +442,7 @@
             this.BTN_Foak.TabIndex = 62;
             this.BTN_Foak.Text = "Four of a kind";
             this.BTN_Foak.UseVisualStyleBackColor = false;
+            this.BTN_Foak.Click += new System.EventHandler(this.BTN_Foak_Click);
             // 
             // BTN_Toak
             // 
@@ -442,6 +453,7 @@
             this.BTN_Toak.TabIndex = 61;
             this.BTN_Toak.Text = "Three of a kind";
             this.BTN_Toak.UseVisualStyleBackColor = false;
+            this.BTN_Toak.Click += new System.EventHandler(this.BTN_Toak_Click);
             // 
             // RTB_SSum
             // 
@@ -460,6 +472,7 @@
             this.BTN_Yaht.TabIndex = 68;
             this.BTN_Yaht.Text = "Yahtzee!";
             this.BTN_Yaht.UseVisualStyleBackColor = false;
+            this.BTN_Yaht.Click += new System.EventHandler(this.BTN_Yaht_Click);
             // 
             // label1
             // 
