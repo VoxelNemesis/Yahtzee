@@ -448,6 +448,7 @@
             this.BTN_Toak.TabIndex = 61;
             this.BTN_Toak.Text = "Three of a kind";
             this.BTN_Toak.UseVisualStyleBackColor = false;
+            this.BTN_Toak.Click += new System.EventHandler(this.BTN_Toak_Click);
             // 
             // RTB_SSum
             // 

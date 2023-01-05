@@ -35,6 +35,7 @@ namespace Yahtzee
         private static bool FoursButtonPressed = false;
         private static bool FivesButtonPressed = false;
         private static bool SixesButtonPressed = false;
+        private static bool ToakButtonPressed = false;
 
         private static bool Ones = false;
         private static bool Twos = false;
@@ -132,7 +133,7 @@ namespace Yahtzee
             }
             if (SixesButtonPressed == false && SumForNum(6) != 0) RTB_Sixes.Text = SumForNum(6).ToString();
             //Three of a kind
-            int count = 1;
+            int count = 0;
 
             for (int i = 0; i < StoreTMB.Length; i++)
             {
@@ -143,14 +144,13 @@ namespace Yahtzee
                         count++;
                     }
                 }
-                if (count > 3)
+                if (count >= 3)
                 {
                     ThreeOfAKind = true;
                 }
-                else count = 1;
+                else count = 0;
             }
-            int TOKsum = 0;
-            SumForElse(TOKsum);
+            if (ToakButtonPressed == false && ThreeOfAKind == true) RTB_Toak.Text = SumForElse(0).ToString();
             //Four of a kind
             int countFour = 1;
             for (int i = 0; i < StoreTMB.Length; i++)
@@ -169,7 +169,7 @@ namespace Yahtzee
                 else count = 1;
             }
             int FOKsum = 0;
-            SumForElse(FOKsum);
+            SumForElse(1);
             // Full house
             int countPair = 1;
             bool pair = false;
@@ -248,6 +248,18 @@ namespace Yahtzee
 
         private void BTN_Roll_Click(object sender, EventArgs e)
         {
+            #region Textbox Clearer
+
+            if (OnesButtonPressed == false) RTB_Ones.Text = null;
+            if (TwosButtonPressed == false) RTB_Twos.Text = null;
+            if (ThreesButtonPressed == false) RTB_Threes.Text = null;
+            if (FoursButtonPressed == false) RTB_Fours.Text = null;
+            if (FivesButtonPressed == false) RTB_Fives.Text = null;
+            if (SixesButtonPressed == false) RTB_Sixes.Text = null;
+            if (ToakButtonPressed == false) RTB_Toak.Text = null;
+
+            #endregion Textbox Clearer
+
             // Checks if out of rolls
             if (RollsRemaining == 0)
             {
@@ -572,6 +584,13 @@ namespace Yahtzee
             RollReseter();
             SixesButtonPressed = true;
             BTN_Sixes.Enabled = false;
+        }
+
+        private void BTN_Toak_Click(object sender, EventArgs e)
+        {
+            RollReseter();
+            ToakButtonPressed = true;
+            BTN_Toak.Enabled = false;
         }
     }
 }
